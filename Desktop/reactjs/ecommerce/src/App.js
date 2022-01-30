@@ -6,7 +6,7 @@ import ItemListContainer from "./components/item-list-container/ItemListContaine
 
  function App() {
     return (
-      <div classname="App">
+      <div className="App">
         <NavBar/>
         <h1>Inicio del e-commerce</h1>
         <hr/>

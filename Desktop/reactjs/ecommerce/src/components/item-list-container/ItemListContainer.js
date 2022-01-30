@@ -1,32 +1,57 @@
 import { useEffect, useState } from "react";
 import Item from "../Item/Item";
-
-const items = [
-    { id: "1", nombre: "Ron Cacique", precio: "3000"},
-    { id: "2", nombre: "Carta Roja", precio: "2000"},
-    { id: "3", nombre: "Cocuy de Penca", precio: "1000"},
-    { id: "4", nombre: "Macondo", precio: "800"},
-
-];
+import { productosApi } from "../../helpers/promises";
+import { productos } from "../../data/producto";
 
 const ItemListContainer = () => {
     const [selectedItem, setSelectedItem ] =useState(null);
+    const [productos, setProductos ] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  return <div>
-      <h1>Lista productos</h1>
-      <h3>Producto Seleccionado</h3>
-      <p>{selectedItem ? selectedItem.nombre : "ninguno" }</p>
-      <p>{selectedItem ? selectedItem.precio : "ninguno" }</p>
-      <hr/>
-      {items.map(({id, nombre, precio }) => ( 
-          <Item 
-          key= {id} 
-          id= {id} 
-          nombre={nombre} 
-          precio={precio} 
-          setSelectedItem= {setSelectedItem}/>
-      ))}
-  </div>;
+    useEffect (() =>{
+        getProductos()
+    },[]);
+
+  const getProductos = async () => {
+      try {
+          const result = await productosApi;
+          setProductos(result);
+    
+      } catch(error) {
+          console.log({error});
+      } finally {
+          setLoading(false);
+          console.log("finaliza el consumo de la api")
+      }
+
+  }
+
+
+if( loading) {
+    return <h2>Cargando</h2>;
+}
+
+ return (
+     <div>
+         <h3>Productos Seleccionados</h3>
+         <ul>
+             <li>
+                {selectedItem && selectedItem.nombre}
+             </li>
+             <li>
+                {selectedItem && selectedItem.description}
+             </li>
+             <li>
+                Cantidad Seleccionada
+                {selectedItem && selectedItem.stock}
+             </li>
+         </ul>
+         <hr/>
+         {productos.map((productos)=> (
+             <Item key={productos.id} {...productos} setSelectedItem = {setSelectedItem} />
+         ))}
+     </div>
+ );
 };
 
 export default ItemListContainer;
