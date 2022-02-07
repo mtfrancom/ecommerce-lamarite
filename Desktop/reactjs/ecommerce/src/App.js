@@ -1,21 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import NavBar from "./components/navbar/NavBar";
+import Routes  from "./routes/Routes";
 import "./App.css";
-import ItemListContainer from "./components/item-list-container/ItemListContainer"
+
 
  function App() {
     return (
       <div className="App">
-        <NavBar/>
-        <h1>Inicio del e-commerce</h1>
-        <hr/>
-        <ItemListContainer/>
-        
+        <Routes/>
       </div>
-      
     );
   }
-
-
+  
 export default App;

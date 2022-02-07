@@ -1,25 +1,45 @@
 import {Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import CartIcon from "../../icon/CartIcon";
+import {Link, NavLink} from "react-router-dom";
+import "./navbar.css";
 
 const NavBar = () => {
+
     return ( 
         
-    <Navbar bg="danger" expand="lg">
+    <Navbar bg="warning" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Lamarite</Navbar.Brand>
+          <Navbar.Brand>
+            <Link to="/">Lamarite</Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Ubicación</Nav.Link>
+              <Nav.Link>
+              <NavLink className={({isActive}) => isActive ? "activeClass":undefined} to="category/ubicacion"
+              >Ubicación
+              </NavLink>
+              </Nav.Link>
               <NavDropdown title="Menú" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Ensaladas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Viandas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Postres</NavDropdown.Item>
+                <NavDropdown.Item >
+                  <NavLink className={({isActive}) => isActive ? 'activeClass' :undefined} to="category/alcohol"
+                  >Alcohol
+                  </NavLink>
+                  </NavDropdown.Item>
+                <NavDropdown.Item >
+                  <NavLink className={({isActive}) => isActive ? "activeClass" :undefined} to="category/viandas"
+                  >Viandas
+                  </NavLink>
+                  </NavDropdown.Item>
+                <NavDropdown.Item >
+                  <NavLink className={({isActive}) => isActive ? "activeClass":undefined} to="category/postres"
+                  >Postres
+                  </NavLink>
+                  </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          <CartIcon />
+          <NavLink className={({isActive}) => isActive ? "activeClass":undefined} to="/"><CartIcon /></NavLink>
         </Container>
       </Navbar>
     );

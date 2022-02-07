@@ -1,20 +1,21 @@
 import { useState } from "react";
+import  { Link} from "react-router-dom"
 import ItemCounter from "../item-counter/ItemCounter"
 
 
-const Item = ({nombre, precio, id, setSelectedItem, stock, description}) => {
+const Item = ({ id, name, price, image, description, stock = 10, setSelectedItem,}) => {
 
     const [stockSelected, setStockSelected] = useState(0);
-    const selecItem = () => setSelectedItem({nombre, precio, id, stock:stockSelected, description });
-
+    
   return (
   <div>
-      <h2>Nombre del producto: {nombre} </h2>
-      <h2>Precio del producto: {precio}</h2>
-      <h2>Descripcion: {description} </h2>
+      <h2>Nombre del producto: {name} </h2>
+      <h2>Precio del producto: {price}</h2>
+      <h2>Descripción: {description} </h2>
+      <img src={image} alt="image of product"/>
       <h2>Stock: {stock} </h2>
-      <ItemCounter stock={stock} setStockSelected={setSelectedItem} />
-      <button onClick={selecItem}>Seleccionar Producto </button>
+      <ItemCounter stock={stock} setStockSelected={setStockSelected} />
+      <Link to={`/item/${id}`}>Seleccionar Producto </Link>
       <hr/>
   </div>
 

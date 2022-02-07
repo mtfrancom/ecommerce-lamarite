@@ -1,55 +1,50 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useProducts from "../../hooks/useProducts";
+import ItemList from "./ItemList"
 import Item from "../Item/Item";
-import { productosApi } from "../../helpers/promises";
-import { productos } from "../../data/producto";
 
 const ItemListContainer = () => {
-    const [selectedItem, setSelectedItem ] =useState(null);
-    const [productos, setProductos ] = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const { id } = useParams();
+    const {getProducts, products } = useProducts();
+
 
     useEffect (() =>{
-        getProductos()
-    },[]);
+        getProducts(); 
+    }, []);
 
-  const getProductos = async () => {
-      try {
-          const result = await productosApi;
-          setProductos(result);
-    
-      } catch(error) {
-          console.log({error});
-      } finally {
-          setLoading(false);
-          console.log("finaliza el consumo de la api")
-      }
-
-  }
-
-
-if( loading) {
-    return <h2>Cargando</h2>;
-}
+    const filterProducts = products.filter(({category}) => category === id)
 
  return (
      <div>
-         <h3>Productos Seleccionados</h3>
-         <ul>
-             <li>
-                {selectedItem && selectedItem.nombre}
-             </li>
-             <li>
-                {selectedItem && selectedItem.description}
-             </li>
-             <li>
-                Cantidad Seleccionada
-                {selectedItem && selectedItem.stock}
-             </li>
-         </ul>
-         <hr/>
-         {productos.map((productos)=> (
-             <Item key={productos.id} {...productos} setSelectedItem = {setSelectedItem} />
-         ))}
+         <h2>Lista de productos</h2>
+        
+         {!id &&
+         products.map((product)=> {
+
+             if (product.id === "1") {
+                console.log(product);
+             } 
+         return (
+            <Item key={product.id} 
+            {...product} 
+           />
+         );
+    })}
+    {id &&
+    filterProducts.map((product)=> {
+
+        if (product.id === "1") {
+            console.log(product);
+        } 
+    return (
+       <Item key={product.id} 
+       {...product} 
+        />
+        );
+    })} 
+    
      </div>
  );
 };
