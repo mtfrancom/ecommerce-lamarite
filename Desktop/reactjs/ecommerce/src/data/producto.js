@@ -50,7 +50,7 @@ export const productos = [
     { id: "7", 
        name: "Pesca del dia en salsa de la casa", 
        description: "ensaladita",
-        category: "viandas",
+      category: "viandas",
        precio: 1600, 
        stock: 10, 
        image: "https://www.hola.com/imagenes/cocina/noticiaslibros/20210805194067/ensaladas-con-tres-cuatro-ingredientes/0-981-971/ingredientes-adobe-m.jpg"

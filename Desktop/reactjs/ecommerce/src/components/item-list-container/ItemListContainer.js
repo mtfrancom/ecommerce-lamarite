@@ -6,44 +6,18 @@ import Item from "../Item/Item";
 
 const ItemListContainer = () => {
 
-    const { id } = useParams();
-    const {getProducts, products } = useProducts();
+    const { idCategory } = useParams();
+    const { products, loading } = useProducts();
 
 
-    useEffect (() =>{
-        getProducts(); 
-    }, []);
-
-    const filterProducts = products.filter(({category}) => category === id)
+    const filterProducts = idCategory ? products.filter(({ category }) => category === idCategory) : products
 
  return (
      <div>
          <h2>Lista de productos</h2>
-        
-         {!id &&
-         products.map((product)=> {
-
-             if (product.id === "1") {
-                console.log(product);
-             } 
-         return (
-            <Item key={product.id} 
-            {...product} 
-           />
-         );
-    })}
-    {id &&
-    filterProducts.map((product)=> {
-
-        if (product.id === "1") {
-            console.log(product);
-        } 
-    return (
-       <Item key={product.id} 
-       {...product} 
-        />
-        );
-    })} 
+         {
+        !loading ? <ItemList products={filterProducts}/> : <h1>cargando productos...</h1>
+      }
     
      </div>
  );
