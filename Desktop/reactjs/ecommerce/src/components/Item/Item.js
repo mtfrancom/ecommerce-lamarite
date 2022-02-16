@@ -2,9 +2,10 @@ import { useState } from "react";
 import  { Link} from "react-router-dom"
 import ItemCounter from "../item-counter/ItemCounter"
 
-const Item = ({ id, name, price, image, description, stock = 10, setSelectedItem,}) => {
+const Item = ({p}) => {
 
   const [stockSelected, setStockSelected] = useState(0);
+  const {id, name, price, image, description, stock = 10} = p;
   
   return (
   <div>

@@ -1,8 +1,6 @@
 import { createContext, useState } from "react";
-import ItemListContainer from "../components/item-list-container/ItemListContainer";
-import Item from "../components/Item/Item";
 
-export const CartContext = createContext();
+ export const CartContext = createContext([]);
 
 export const CartProvider = ({childen}) => {
     const [items, setItems] = useState([]);

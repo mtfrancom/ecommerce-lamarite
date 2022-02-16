@@ -11,7 +11,7 @@ import { CartProvider } from './context/CartContext';
         {/* <ResizeComponent /> */}
         <Routes/>
       </div>
-      // </CartProvider>
+      </CartProvider>
     );
   }
   
