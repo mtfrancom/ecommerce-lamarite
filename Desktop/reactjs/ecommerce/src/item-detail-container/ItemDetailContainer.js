@@ -45,9 +45,9 @@ const ItemDetailContainer = () => {
                 <p>{selectedItem && selectedItem.name}</p>
                 <p>{selectedItem && selectedItem.price}</p>
                 <p>{selectedItem && selectedItem.description}</p>
-                <p> Cantidad Seleccionada:  {selectedItem && selectedItem.stock}</p>
+                {/* <p> Cantidad Seleccionada:  {selectedItem && selectedItem.stock}</p> */}
             <hr/>
-            <ItemCounter stock={stock} setStockSelected={setStockSelected} onAdd={onAdd} />
+            {/* <ItemCounter stock={stock} setStockSelected={setStockSelected} onAdd={onAdd} /> */}
             <Link to={`/cart/`} >Carrito</Link>
             </div>
     );
