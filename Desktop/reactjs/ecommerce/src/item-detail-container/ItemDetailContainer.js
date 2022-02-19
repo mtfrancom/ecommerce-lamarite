@@ -16,10 +16,10 @@ const ItemDetailContainer = () => {
     const { addItem } = useContext(CartContext); 
     const [quantity, setQuantity] = useState(0);
 
-    const onAdd = () => {
-        console.log(selectedItem.id, selectedItem.name)
-
-    }
+    const onAdd = (counter) => {
+        addItem({...selectedItem, cantidad:counter} ) 
+        // console.log(selectedItem.id, selectedItem.name)
+    };
 
     useEffect(() => {
       if (products.length > 0) {
@@ -45,9 +45,9 @@ const ItemDetailContainer = () => {
                 <p>{selectedItem && selectedItem.name}</p>
                 <p>{selectedItem && selectedItem.price}</p>
                 <p>{selectedItem && selectedItem.description}</p>
-                {/* <p> Cantidad Seleccionada:  {selectedItem && selectedItem.stock}</p> */}
+                <p> Cantidad Seleccionada:  {selectedItem && selectedItem.stock}</p>
             <hr/>
-            {/* <ItemCounter stock={stock} setStockSelected={setStockSelected} onAdd={onAdd} /> */}
+            <ItemCounter stock={selectedItem && selectedItem.stock} setStockSelected={setStockSelected} onAdd={onAdd} />
             <Link to={`/cart/`} >Carrito</Link>
             </div>
     );
