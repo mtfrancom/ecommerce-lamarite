@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import {productsApi} from "../helpers/promises";
-
-
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from "../firebase/config";
 
 const useProducts = () => {
 
@@ -16,8 +15,14 @@ const useProducts = () => {
     
     const getProducts = async () => {
         try {
-            const result = await productsApi
-            setProducts(result)
+
+            const catalogo = []
+            const result = await getDocs(collection(db, "items"))
+            result.forEach((doc) => {
+                catalogo.push(doc.data())
+                console.log(doc.data())
+            })
+            setProducts(catalogo)
         } catch (error) {
             console.log({error})
             

@@ -3,13 +3,14 @@ import useProducts from "../hooks/useProducts";
 import { useParams, Link } from "react-router-dom";
 import ItemCounter from "../components/item-counter/ItemCounter"
 import { CartContext } from "../context/CartContext";
+import { Firestore } from "firebase/firestore";
 
 
 
 const ItemDetailContainer = () => {
 
     const {products} = useProducts();
-    const {id} = useParams();
+    const {id} = Firestore;
     const [stockSelected, setStockSelected] = useState(0);
     const  { stock, name } = products;
     const [selectedItem, setSelectedItem] = useState(null);
@@ -23,7 +24,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
       if (products.length > 0) {
-          const selectedProduct = products.find((product) => product.id === id);
+          const selectedProduct = products.find((items) => items.id === id);
           setSelectedItem(selectedProduct)
       } 
     }, [products]);

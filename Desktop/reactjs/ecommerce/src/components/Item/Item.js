@@ -12,7 +12,7 @@ const Item = ({p}) => {
       <h2>Nombre del producto: {name} </h2>
       <h2>Precio del producto: {price}</h2>
       <h2>Descripción: {description} </h2>
-      <div><img src={image} alt="image of product"/></div>
+      <div><img src={image} alt={name} /></div>
       <h2>Stock: {stock} </h2>
       {/* <ItemCounter stock={stock} setStockSelected={setStockSelected} /> */}
       <Link to={`/item/${id}`}>Seleccionar Producto </Link>
