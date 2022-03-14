@@ -1,4 +1,4 @@
-import {Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import {Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import CartIcon from "../../icon/CartIcon";
 import {Link, NavLink} from "react-router-dom";
 import "./navbar.css";
@@ -10,30 +10,30 @@ const NavBar = () => {
     <Navbar bg="warning" expand="lg">
         <Container>
           <Navbar.Brand>
-            <Link to="/">Lamarite</Link>
+            <Link to="/" className="text-decoration-none" >Lamarite</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link>
-              <NavLink className={({isActive}) => isActive ? "activeClass":undefined} to="category/ubicacion"
-              >Ubicación
+              <NavLink className="text-decoration-none" to="category/ubicacion"> Ubicación
+            
               </NavLink>
               </Nav.Link>
               <NavDropdown title="Menú" id="basic-nav-dropdown">
                 <NavDropdown.Item >
-                  <NavLink className={({isActive}) => isActive ? 'activeClass' :undefined} to="category/alcohol"
+                  <NavLink className="text-decoration-none" to="category/alcohol"
                   >Alcohol
                   </NavLink>
                   </NavDropdown.Item>
                 <NavDropdown.Item >
-                  <NavLink className={({isActive}) => isActive ? "activeClass" :undefined} to="category/viandas"
+                  <NavLink className="text-decoration-none" to="category/viandas"
                   >Viandas
                   </NavLink>
                   </NavDropdown.Item>
                 <NavDropdown.Item >
-                  <NavLink className={({isActive}) => isActive ? "activeClass":undefined} to="category/postres"
-                  >Postres
+                  <NavLink className="text-decoration-none" to="category/ensaladas"
+                  >Ensaladas
                   </NavLink>
                   </NavDropdown.Item>
               </NavDropdown>

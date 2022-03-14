@@ -4,8 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import ItemCounter from "../components/item-counter/ItemCounter"
 import { CartContext } from "../context/CartContext";
 import { Firestore } from "firebase/firestore";
-
-
+import "../components/cart/cart.css";
 
 const ItemDetailContainer = () => {
 
@@ -41,7 +40,7 @@ const ItemDetailContainer = () => {
             <h2>Lista de productos</h2>
             <h3>Productos Seleccionados</h3>
             {selectedItem && selectedItem.image && (
-                <img src={selectedItem.image} alt="products"/>
+                <img className="cartItemInfo" src={selectedItem.image} alt="products"/>
             )}
                 <p>{selectedItem && selectedItem.name}</p>
                 <p>{selectedItem && selectedItem.price}</p>
